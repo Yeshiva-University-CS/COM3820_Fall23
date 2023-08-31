@@ -1,1 +1,1 @@
-# 3820_Fall23
+# Stubbed assignments and other code for COM3820
