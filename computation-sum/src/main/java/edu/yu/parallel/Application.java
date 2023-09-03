@@ -14,9 +14,9 @@ public class Application {
         Configurator.setLevel("edu.yu.parallel", Level.INFO);
     }
 
-    public static int computeSumSerial(int count) {
-        IntGenerator generator = new IntGenerator(count);
-        int sum = 0;
+    public static long computeSumSerial(long count) {
+        LongGenerator generator = new LongGenerator(count);
+        long sum = 0;
         while (generator.hasNext()) {
             sum += generator.next();
         }
@@ -24,7 +24,7 @@ public class Application {
     }
 
     public static void main(String[] args) {
-        int count = (args.length > 0 && args[0] != null) ? Integer.parseInt(args[0]) : 1000000000;
+        long count = (args.length > 0 && args[0] != null) ? Long.parseLong(args[0]) : 1000000000;
 
         long start = System.nanoTime();
         logger.info("Begin serial sum of {} computations", count);
@@ -32,11 +32,11 @@ public class Application {
         logger.info("Completed in " + String.format("%.3f", (System.nanoTime() - start)/1000000.0) + " ms");
     }
 
-    private static class IntGenerator implements Iterator<Integer> {
-        private int current = 1;
-        private int limit;
+    private static class LongGenerator implements Iterator<Long> {
+        private long current = 1;
+        private long limit;
 
-        public IntGenerator(int limit) {
+        public LongGenerator(long limit) {
             this.limit = limit;
         }
 
@@ -46,7 +46,7 @@ public class Application {
         }
 
         @Override
-        public Integer next() {
+        public Long next() {
             return current++;
         }
     }
