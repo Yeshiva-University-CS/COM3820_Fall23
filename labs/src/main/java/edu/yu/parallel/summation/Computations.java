@@ -1,9 +1,13 @@
 package edu.yu.parallel.summation;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 import java.nio.channels.Channels;
 import java.nio.channels.WritableByteChannel;
+import java.util.UUID;
 import java.util.function.Function;
 
 public class Computations {
@@ -22,9 +26,7 @@ public class Computations {
     };
 
     public static Function<Long, Long> ioIntensive = (Long x) -> {
-        for (int i = 0; i < 20; i++) {
-            simulateFileIO(1);
-        }
+        fileIOActivity(30);
         return x;
     };
 
@@ -39,6 +41,35 @@ public class Computations {
                 nullChannel.write(buffer);
             }
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void fileIOActivity(int numberOfFiles) {
+        File[] tempFiles = new File[numberOfFiles];
+
+        // Create and write to temporary files
+        for (int i = 0; i < numberOfFiles; i++) {
+            String uniqueFileName = "tempFile_" + UUID.randomUUID().toString();
+            try {
+                tempFiles[i] = File.createTempFile(uniqueFileName, ".txt");
+
+                try (FileWriter writer = new FileWriter(tempFiles[i])) {
+                    // Write data to file
+                    for (int j = 0; j < 1000; j++) {
+                        writer.write("Test IO itensive " + uniqueFileName + "\n");
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Clean up: Delete temporary files
+        for (File file : tempFiles) {
+            if (file.exists()) {
+                file.delete();
+            }
         }
     }
 }
