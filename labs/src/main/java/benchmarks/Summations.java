@@ -24,7 +24,7 @@ import edu.yu.parallel.summation.SerialSum;
 @Warmup(iterations = 2)
 @Measurement(iterations = 3)
 public class Summations {
-    @Param({ "1000000"})
+    @Param({ "10000"})
     private int limit;
 
     @Setup
