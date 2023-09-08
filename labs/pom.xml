@@ -5,14 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.yu.parallel</groupId>
-    <artifactId>computation-sum</artifactId>
-    <version>1.0</version>
+    <artifactId>labs</artifactId>
+    <version>1</version>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
-    <project.mainClass>edu.yu.parallel.Application</project.mainClass>
   </properties>
 
   <dependencies>
@@ -63,11 +62,6 @@
             <descriptorRefs>
               <descriptorRef>jar-with-dependencies</descriptorRef>
             </descriptorRefs>
-            <archive>
-              <manifest>
-                <mainClass>${project.mainClass}</mainClass>
-              </manifest>
-            </archive>
           </configuration>
           <executions>
             <execution>
