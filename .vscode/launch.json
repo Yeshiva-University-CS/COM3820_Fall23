@@ -4,15 +4,17 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "type": "java",
-            "name": "SerialSum",
+            "name": "ComputeSum",
             "request": "launch",
-            "mainClass": "edu.yu.parallel.summation.SerialSum",
+            "mainClass": "edu.yu.parallel.lab1.ComputeSum",
             "projectName": "labs",
             "args": [
-                "-count=1000",
-                "-computation=io"
+                "-count=1000", 
+                "-computation=identity",
+                "-algorithm=serial"
             ]
         },
         {
