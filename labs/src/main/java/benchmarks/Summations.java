@@ -14,8 +14,9 @@ import org.openjdk.jmh.annotations.Setup;
 import org.openjdk.jmh.annotations.State;
 import org.openjdk.jmh.annotations.Warmup;
 
-import edu.yu.parallel.summation.Computations;
-import edu.yu.parallel.summation.SerialSum;
+import edu.yu.parallel.lab1.ComputeKernels;
+import edu.yu.parallel.lab1.ComputeSum;
+import edu.yu.parallel.lab1.SerialAlgorithm;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
@@ -24,26 +25,42 @@ import edu.yu.parallel.summation.SerialSum;
 @Warmup(iterations = 2)
 @Measurement(iterations = 3)
 public class Summations {
-    @Param({ "1000"})
-    private int limit;
+
+    @Param({ "1000" })
+    private long count;
 
     @Setup
     public void setup() {
-        System.out.println("limit = " + limit);
+        System.out.println("count = " + count);
     }
 
     @Benchmark
     public long testSerial() throws Exception {
-        return SerialSum.computeTotals(limit, Computations.identity);
+        return ComputeSum.create()
+                .withAlgorithm(new SerialAlgorithm())
+                .withKernel(ComputeKernels.identity)
+                .startingFrom(0L)
+                .endingAt(count)
+                .execute();
     }
 
     @Benchmark
     public long testSerialCPU() throws Exception {
-        return SerialSum.computeTotals(limit, Computations.cpuIntensive);
+        return ComputeSum.create()
+                .withAlgorithm(new SerialAlgorithm())
+                .withKernel(ComputeKernels.cpuIntensive)
+                .startingFrom(0L)
+                .endingAt(count)
+                .execute();
     }
 
     @Benchmark
     public long testSerialIO() throws Exception {
-        return SerialSum.computeTotals(limit, Computations.ioIntensive);
+        return ComputeSum.create()
+                .withAlgorithm(new SerialAlgorithm())
+                .withKernel(ComputeKernels.ioIntensive)
+                .startingFrom(0L)
+                .endingAt(count)
+                .execute();
     }
 }

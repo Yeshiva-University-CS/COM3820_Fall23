@@ -1,4 +1,4 @@
-package edu.yu.parallel.summation;
+package edu.yu.parallel.lab1;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -10,7 +10,7 @@ import java.nio.channels.WritableByteChannel;
 import java.util.UUID;
 import java.util.function.Function;
 
-public class Computations {
+public class ComputeKernels {
 
     public static Function<Long, Long> identity = (Long x) -> x;
 
