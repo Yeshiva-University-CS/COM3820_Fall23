@@ -20,7 +20,7 @@ public class App {
         // Display stock prices in the PriceTickerFrame running in its own thread
         // Log the thread start and exit exactly as below in the samples
         // Refresh and update the display with the new prices and intraday change values
-        // **at least** on 500 milliseconds interavals
+        // at 500 milliseconds interavals
 
         // Ensure that the application exits when the close button is clicked
 
@@ -34,19 +34,28 @@ public class App {
 // double percentageChange = (random.nextDouble() - 0.5) * 0.1;
 // double newPrice = currentPrice + (currentPrice * percentageChange);
 
-// 13:04:16.556 [main] INFO  - Application starting
-// 13:04:16.560 [ticker screen] INFO  - Started
-// 13:04:16.561 [price updater] INFO  - Started
-// 13:04:17.451 [price updater] INFO  - Price update for JNJ [168.38 => 167.96]
-// 13:04:18.238 [price updater] INFO  - Price update for JPM [156.15 => 163.53]
-// 13:04:18.776 [price updater] INFO  - Price update for JNJ [167.96 => 174.50]
-// 13:04:18.920 [ticker screen] INFO  - Interrupted with an exception
-// 13:04:18.921 [ticker screen] INFO  - Stopped (Interrupted = true)
-// 13:04:18.921 [main] INFO  - Application exiting
-// 13:04:19.593 [price updater] INFO  - Price update for KO [62.39 => 62.41]
-// 13:04:20.294 [price updater] INFO  - Price update for JPM [163.53 => 160.93]
+// 14:15:08.872 [main   ] INFO  - Application starting
+// 14:15:08.877 [ticker ] INFO  - Started
+// 14:15:08.877 [updater] INFO  - Started
+// 14:15:09.491 [updater] INFO  - Price update for AMGN [233.23 => 240.52]
+// 14:15:10.434 [updater] INFO  - Price update for AXP [177.11 => 182.69]
+// 14:15:11.037 [updater] INFO  - Price update for IBM [138.38 => 137.87]
+// 14:15:11.947 [updater] INFO  - Price update for GS [350.86 => 349.24]
+// 14:15:12.435 [ticker ] INFO  - Interrupted with an exception
+// 14:15:12.435 [ticker ] INFO  - Stopped (Interrupted = true)
+// 14:15:12.435 [main   ] INFO  - Application exiting
+// 14:15:12.474 [updater] INFO  - Price update for AXP [182.69 => 181.58]
+// 14:15:13.367 [updater] INFO  - Price update for HD [319.09 => 333.00]
+// 14:15:13.894 [updater] INFO  - Price update for HON [207.96 => 208.32]
 
 // NOTE: The "Interrupted with an exception" messasge should only be logged if the
-// cancellation by the close button caused an InterruptedException
+// cancellation by the close button caused an InterruptedException. Whether or not it 
+// does is dependent on execution timing.
+
+// NOTE: Log messages from the updater will be interleaved with the ticker and main thread logs,
+// so order does not matter.
+
+// Note: Log messages from the updater may or may not appear after the "Application exiting" log message. 
+// This is also dependent on execution timing.
 
 
