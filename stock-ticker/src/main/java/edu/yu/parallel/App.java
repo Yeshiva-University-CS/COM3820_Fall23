@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 public class App {
         private static final Logger logger = LogManager.getLogger(App.class);
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args)  {
         logger.info("Application started");
 
         // Create a list of 15 stocks using the StockReader class provided

@@ -15,11 +15,21 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 
+/**
+ * Represents a frame for displaying stock prices in a table format.
+ */
 public class PriceTickerFrame {
     private JFrame frame;
     private DefaultTableModel model;
     private Runnable onCloseCallback;
 
+    /**
+     * Constructs a new PriceTickerFrame with the specified title, width, and height.
+     *
+     * @param title  the title of the frame
+     * @param width  the width of the frame
+     * @param height the height of the frame
+     */
     public PriceTickerFrame(String title, int width, int height) {
         this.frame = new JFrame(title);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,13 +45,12 @@ public class PriceTickerFrame {
         frame.setLayout(new BorderLayout());
         frame.add(scrollPane, BorderLayout.CENTER);
 
-        // Create the Close button
+        // Create the Close button and hook up to callback
         JButton closeButton = new JButton("Close");
-        closeButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                onClose();
-            }
+        closeButton.addActionListener((e) -> {
+            if (onCloseCallback != null)
+                onCloseCallback.run();
+            frame.dispose();
         });
 
         // Create a JPanel with GridBagLayout to center the button
@@ -53,19 +62,37 @@ public class PriceTickerFrame {
         resizeColumnWidth(table);
     }
 
+    /**
+     * Sets the visibility of the frame.
+     *
+     * @param visible true to make the frame visible, false to hide it
+     */
     public void setVisible(boolean visible) {
         frame.setVisible(visible);
     }
 
-    // Add a row for the given stock and return the index of the row
-    // Note: does not check for duplicate stock names
+    /**
+     * Adds a new stock to the table and returns the index of the newly added row.
+     * Note: This method does not check for duplicate stock names.
+     *
+     * @param symbol    the stock symbol
+     * @param name      the stock name
+     * @param prevClose the previous closing price of the stock
+     * @param price     the current price of the stock
+     * @return the index of the newly added row
+     */
     public int addStock(String symobol, String name, double prevClose, double price) {
         model.addRow(new Object[] { symobol, name, prevClose, price, price - prevClose });
         return model.getRowCount() - 1;
     }
 
-    // Update the price and change columns for the given stock
-    // with the new price and the new intraday change
+    /**
+     * Updates the price and intraday change columns for a specific stock in the table.
+     *
+     * @param stockRowId the row index of the stock to update
+     * @param price      the new price of the stock
+     * @param change     the new intraday change value
+     */
     public void updateStockPrice(int stockRowId, double price, double change) {
         var priceStr = String.format("%.2f", price);
         var changeStr = String.format("%.2f", change);
@@ -74,26 +101,21 @@ public class PriceTickerFrame {
         model.setValueAt(changeStr, stockRowId, 4);
     }
 
-    // Set the onClose callback that will run
-    // when the close button is clicked
+    /**
+     * Sets a callback to be executed when the close button is clicked.
+     *
+     * @param callback the callback to be executed
+     */
     public void setOnCloseCallback(Runnable callback) {
         this.onCloseCallback = callback;
     }
 
-    ///////////////////////////////
-    // private methods
-    /////////////////////////////////
-
-    // Close the frame and run the onClose callback
-    // that was supplied by the user
-    private void onClose() {
-        if (onCloseCallback != null)
-            onCloseCallback.run();
-        frame.dispose();
-    }
-
-    // Private helper function to resize the columns of the table
-    // to fit the data
+    /**
+     * Private method to adjusts the width of each column in the table based on its content.
+     * Ensures columns are wide enough to fit their data.
+     *
+     * @param table the JTable whose columns need resizing
+     */
     private void resizeColumnWidth(JTable table) {
         final TableColumnModel columnModel = table.getColumnModel();
         for (int column = 0; column < table.getColumnCount(); column++) {

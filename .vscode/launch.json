@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "stock-ticker",
+            "request": "launch",
+            "mainClass": "edu.yu.parallel.App",
+            "projectName": "stock-ticker"
+        },
+        {
+            "type": "java",
             "name": "SerialSum",
             "request": "launch",
             "mainClass": "edu.yu.parallel.summation.SerialSum",
