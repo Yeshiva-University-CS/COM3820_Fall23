@@ -52,6 +52,8 @@ public class App {
 // cancellation by the close button caused an InterruptedException. Whether or not it 
 // does is dependent on execution timing.
 
+// NOTE: Order of the threads starting (or their log messages) does not matter.
+
 // NOTE: Log messages from the updater will be interleaved with the ticker and main thread logs,
 // so order does not matter.
 
