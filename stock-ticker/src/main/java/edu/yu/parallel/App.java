@@ -20,7 +20,7 @@ public class App {
         // Display stock prices in the PriceTickerFrame running in its own thread
         // Log the thread start and exit exactly as below in the samples
         // Refresh and update the display with the new prices and intraday change values
-        // at 500 milliseconds interavals
+        // at 500 milliseconds intervals
 
         // Ensure that the application exits when the close button is clicked
 
