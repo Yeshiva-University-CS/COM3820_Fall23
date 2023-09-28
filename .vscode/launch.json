@@ -6,6 +6,16 @@
     "configurations": [
         {
             "type": "java",
+            "name": "SerialPrimes",
+            "request": "launch",
+            "mainClass": "edu.yu.parallel.SerialPrimes",
+            "projectName": "lab2-primes",
+            "args": [
+                "-to=1000"
+            ]
+        },
+        {
+            "type": "java",
             "name": "stock-ticker",
             "request": "launch",
             "mainClass": "edu.yu.parallel.App",

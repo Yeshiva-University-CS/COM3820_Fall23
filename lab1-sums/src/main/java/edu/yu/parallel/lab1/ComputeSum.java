@@ -4,37 +4,37 @@ import java.util.function.Function;
 
 import edu.yu.parallel.CustomLogger;
 
-public class ComputeSum {
-        private static CustomLogger logger = CustomLogger.getLogger(ComputeSum.class);
+public class CountPrimes {
+        private static CustomLogger logger = CustomLogger.getLogger(CountPrimes.class);
 
         private Function<Long, Long> kernel;
         private Long start = 0L;
         private Long end = 0L;
         private ComputeAlgorithm algorithm;
 
-        private ComputeSum() {
+        private CountPrimes() {
         }
 
-        public static ComputeSum create() {
-                return new ComputeSum();
+        public static CountPrimes create() {
+                return new CountPrimes();
         }
 
-        public ComputeSum withKernel(Function<Long, Long> kernel) {
+        public CountPrimes withKernel(Function<Long, Long> kernel) {
                 this.kernel = kernel;
                 return this;
         }
 
-        public ComputeSum startingFrom(long start) {
+        public CountPrimes startingFrom(long start) {
                 this.start = start;
                 return this;
         }
 
-        public ComputeSum endingAt(long end) {
+        public CountPrimes endingAt(long end) {
                 this.end = end;
                 return this;
         }
 
-        public ComputeSum withAlgorithm(ComputeAlgorithm algorithm) {
+        public CountPrimes withAlgorithm(ComputeAlgorithm algorithm) {
                 this.algorithm = algorithm;
                 return this;
         }
@@ -68,7 +68,7 @@ public class ComputeSum {
 
                 final ComputeAlgorithm algorithm = ParamUtils.getAlgorithmParameter(args);
 
-                long total = new ComputeSum()
+                long total = new CountPrimes()
                     .withAlgorithm(algorithm)
                     .withKernel(computation)
                     .startingFrom(0L)
