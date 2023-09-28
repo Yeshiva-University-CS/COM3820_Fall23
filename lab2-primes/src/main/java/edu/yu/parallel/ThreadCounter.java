@@ -38,7 +38,8 @@ public class ThreadCounter {
             long from = i * chunkSize;
             long to = (i == numberOfThreads - 1) ? limit : (i + 1) * chunkSize - 1;
 
-            // TODO: create and start threads
+            threadList.add(new PrimeFinderThread(from, to));
+            threadList.get(i).start();
         }
 
         int numberOfPrimes = 0;
@@ -82,7 +83,10 @@ public class ThreadCounter {
         }
 
         public void run() {
-            throw new UnsupportedOperationException("Implement me!");
+            long start = System.nanoTime();
+            numberOfPrimes = PrimeFinder.countPrimes(getFrom(), getTo());
+            long end = System.nanoTime();
+            duration = end - start;
         }
     }
 

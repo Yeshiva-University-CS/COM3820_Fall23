@@ -27,11 +27,24 @@ public class ThreadCounter2 {
                 return 0;
             }
         });
+        
         logger.log("Count = %d", count);
     }
 
     public static int countPrimes(long limit, int numberOfThreads) throws InterruptedException {
         throw new UnsupportedOperationException("Implement me!");
+
+        // int numberOfPrimes = 0;
+
+        // for (PrimeFinderThread thread : threadList) {
+        //     thread.join();
+        //     numberOfPrimes += thread.getNumberOfPrimes();
+        //     logger.log("From %d to %d counted %d primes [in %.3f ms]",
+        //             thread.getFrom(), thread.getTo(), thread.getNumberOfPrimes(),
+        //             thread.getDuration() / 1e6);
+        // };
+
+        // return numberOfPrimes;
     }
 
     static class PrimeFinderThread extends Thread {
