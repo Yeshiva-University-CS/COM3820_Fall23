@@ -7,7 +7,7 @@ public class SerialCounter {
 
 
     public static void main(String[] args) {
-        if (args.length != 2) {
+        if (args.length != 1) {
             logger.log("Usage: java edu.yu.parallel.SerialCounter <limit>");
             System.exit(1);
         }
