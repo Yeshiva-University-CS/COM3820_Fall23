@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>edu.yu.parallel</groupId>
-    <artifactId>lab1-primes</artifactId>
+    <artifactId>lab2-primes</artifactId>
     <version>1.0</version>
 
   <properties>
