@@ -1,5 +1,7 @@
 package edu.yu.parallel;
 
+import java.util.function.Supplier;
+
 import edu.yu.parallel.utils.CustomLogger;
 
 public class ThreadCounter2 {
@@ -33,11 +35,12 @@ public class ThreadCounter2 {
     }
 
     static class PrimeFinderThread extends Thread {
+        private final Supplier<Long> candidateGenerator;
         private long duration;
         private int numberOfPrimes;
 
-        public PrimeFinderThread() {
-
+        public PrimeFinderThread(Supplier<Long> candidateGenerator) {
+            this.candidateGenerator = candidateGenerator;
         }
 
         public int getNumberOfPrimes() {
