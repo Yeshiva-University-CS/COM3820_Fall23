@@ -91,8 +91,12 @@ public class StockPrices {
      * 
      * @param symbol the stock's symbol
      * @return the stock's price
+     * @throws IllegalArgumentException if the symbol is invalid
      */
     public double getStockPrice(String symbol) {
+        if (!prices.containsKey(symbol)) {
+            throw new IllegalArgumentException("Invalid symbol");
+        }
         return prices.get(symbol);
     }
 
